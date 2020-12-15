@@ -1,0 +1,46 @@
+┬───
+│ GC Root: Local variable in native code
+│
+├─ android.net.ConnectivityThread instance
+│    Leaking: NO (PathClassLoader↓ is not leaking)
+│    Thread name: 'ConnectivityThread'
+│    ↓ ConnectivityThread.contextClassLoader
+├─ dalvik.system.PathClassLoader instance
+│    Leaking: NO (ConfActivityNormal↓ is not leaking and A ClassLoader is never
+│    leaking)
+│    ↓ PathClassLoader.runtimeInternalObjects
+├─ java.lang.Object[] array
+│    Leaking: NO (ConfActivityNormal↓ is not leaking)
+│    ↓ Object[].[684]
+├─ com.zipow.videobox.ConfActivityNormal class
+│    Leaking: NO (a class is never leaking)
+│    ↓ static ConfActivityNormal.g_hideToolbarRunnable
+│                                ~~~~~~~~~~~~~~~~~~~~~
+├─ com.zipow.videobox.ConfActivityNormal$9 instance
+│    Leaking: UNKNOWN
+│    Retaining 28769167 bytes in 11834 objects
+│    Anonymous class implementing java.lang.Runnable
+│    b instance of com.zipow.videobox.ConfActivityNormal with mDestroyed = true
+│    ↓ ConfActivityNormal$9.b
+│                           ~
+╰→ com.zipow.videobox.ConfActivityNormal instance
+      Leaking: YES (ObjectWatcher was watching this because com.zipow.videobox.
+      ConfActivityNormal received Activity#onDestroy() callback and
+      Activity#mDestroyed is true)
+      Retaining 28769143 bytes in 11833 objects
+      key = 623d7ca1-a495-4259-8391-e0a980d265c8
+      watchDurationMillis = 5264
+      retainedDurationMillis = 248
+      mApplication instance of android.app.Application
+      mBase instance of android.app.ContextImpl, not wrapping known Android
+      context
+
+METADATA
+
+Build.VERSION.SDK_INT: 29
+Build.MANUFACTURER: OnePlus
+LeakCanary version: 2.5
+Stats: LruCache[maxSize=3000,hits=23634,misses=133021,hitRate=15%]
+RandomAccess[bytes=7307314,reads=133021,travel=42314308078,range=28963164,size=3
+3404071]
+Analysis duration: 6920 ms
